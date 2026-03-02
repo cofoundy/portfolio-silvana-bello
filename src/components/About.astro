@@ -1,0 +1,84 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section
+  id="about"
+  class="py-16 md:py-24"
+  style={`background-color: ${siteConfig.colors.surface}`}
+>
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <!-- 3-column layout: Title | Bio | Pull Quote -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      <!-- Title Column -->
+      <div class="lg:col-span-3 reveal-left">
+        <p
+          class="text-xs font-medium uppercase tracking-[0.3em] mb-3"
+          style={`color: ${siteConfig.colors.primary}`}
+        >
+          Sobre mí
+        </p>
+        <h2
+          class="text-4xl md:text-5xl font-light"
+          style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
+        >
+          La Artista
+        </h2>
+        <div
+          class="w-12 h-px mt-4"
+          style={`background-color: ${siteConfig.colors.accent}`}
+        ></div>
+      </div>
+
+      <!-- Content Column -->
+      <div class="lg:col-span-5 reveal stagger-1">
+        <p class="text-base md:text-lg text-gray-600 leading-relaxed" style="font-family: 'Montserrat', sans-serif;">
+          <Fragment set:html={siteConfig.aboutMe} />
+        </p>
+      </div>
+
+      <!-- Quote Column -->
+      {siteConfig.quote && (
+        <div class="lg:col-span-4 reveal-scale stagger-2">
+          <blockquote
+            class="quote-float relative p-8"
+            style={`border-left: 2px solid ${siteConfig.colors.accent}`}
+          >
+            <p
+              class="text-2xl md:text-3xl font-light italic leading-snug"
+              style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
+            >
+              &ldquo;{siteConfig.quote.text}&rdquo;
+            </p>
+            <footer
+              class="mt-4 text-xs uppercase tracking-[0.2em]"
+              style={`color: ${siteConfig.colors.primary}`}
+            >
+              — {siteConfig.quote.author}
+            </footer>
+          </blockquote>
+        </div>
+      )}
+    </div>
+
+    <!-- Skills -->
+    <div class="mt-12 pt-8 border-t reveal stagger-3" style={`border-color: ${siteConfig.colors.primary}15`}>
+      <h3
+        class="text-xs font-medium uppercase tracking-[0.3em] mb-5"
+        style={`color: ${siteConfig.colors.primary}`}
+      >
+        Especialidades
+      </h3>
+      <div class="flex flex-wrap gap-3">
+        {siteConfig.skills.map((skill, index) => (
+          <span
+            class={`skill-hover px-5 py-2 text-sm font-light cursor-default stagger-${Math.min(index % 6 + 1, 6)}`}
+            style={`background-color: white; color: ${siteConfig.colors.primaryDark}; border: 1px solid ${siteConfig.colors.primary}25; font-family: 'Montserrat', sans-serif;`}
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

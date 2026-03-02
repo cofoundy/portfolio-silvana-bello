@@ -1,0 +1,94 @@
+---
+import { siteConfig } from "../config";
+
+const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+const hasServices = siteConfig.services && siteConfig.services.length > 0;
+---
+
+<!-- Floating pill nav — editorial style -->
+<header
+  id="header"
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block opacity-0 pointer-events-none transition-all duration-500"
+>
+  <nav
+    class="px-8 py-3 shadow-sm backdrop-blur-md"
+    style={`background-color: ${siteConfig.colors.surfaceLight}ee; border: 1px solid ${siteConfig.colors.primary}10`}
+  >
+    <ul class="flex items-center gap-8">
+      <li>
+        <span
+          class="text-sm font-light tracking-wide"
+          style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif; font-size: 1rem;`}
+        >
+          SB
+        </span>
+      </li>
+      <li class="w-px h-4" style={`background-color: ${siteConfig.colors.primary}20`}></li>
+      <li>
+        <a
+          href="#about"
+          class="link-underline text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-300"
+          style={`color: ${siteConfig.colors.primaryDark}`}
+        >
+          Sobre Mí
+        </a>
+      </li>
+      {hasServices && (
+        <li>
+          <a
+            href="#services"
+            class="link-underline text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-300"
+            style={`color: ${siteConfig.colors.primaryDark}`}
+          >
+            Servicios
+          </a>
+        </li>
+      )}
+      {hasProjects && (
+        <li>
+          <a
+            href="#portfolio"
+            class="link-underline text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-300"
+            style={`color: ${siteConfig.colors.primaryDark}`}
+          >
+            Portfolio
+          </a>
+        </li>
+      )}
+      {hasExperience && (
+        <li>
+          <a
+            href="#experience"
+            class="link-underline text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-300"
+            style={`color: ${siteConfig.colors.primaryDark}`}
+          >
+            Trayectoria
+          </a>
+        </li>
+      )}
+      <li>
+        <a
+          href="#cta"
+          class="link-underline text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-300"
+          style={`color: ${siteConfig.colors.primaryDark}`}
+        >
+          Contacto
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const header = document.getElementById("header");
+    if (window.scrollY > 400) {
+      header?.classList.remove("opacity-0", "pointer-events-none");
+      header?.classList.add("opacity-100", "pointer-events-auto", "header-visible");
+    } else {
+      header?.classList.add("opacity-0", "pointer-events-none");
+      header?.classList.remove("opacity-100", "pointer-events-auto", "header-visible");
+    }
+  });
+</script>

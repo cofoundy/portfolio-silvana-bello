@@ -1,0 +1,112 @@
+---
+import { siteConfig } from "../config";
+const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+---
+
+{hasExperience && (
+  <section
+    id="experience"
+    class="py-16 md:py-24"
+    style={`background-color: ${siteConfig.colors.surfaceLight}`}
+  >
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <!-- Header — editorial -->
+      <div class="mb-14 reveal-left">
+        <p
+          class="text-xs font-medium uppercase tracking-[0.3em] mb-3"
+          style={`color: ${siteConfig.colors.primary}`}
+        >
+          Experiencia
+        </p>
+        <h2
+          class="text-4xl md:text-5xl font-light"
+          style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
+        >
+          Trayectoria
+        </h2>
+        <div
+          class="w-12 h-px mt-4"
+          style={`background-color: ${siteConfig.colors.accent}`}
+        ></div>
+      </div>
+
+      <!-- Horizontal Timeline (Desktop only) -->
+      <div class="hidden md:block relative mb-10 reveal stagger-1">
+        <div
+          class="absolute top-3 left-0 right-0 h-px timeline-line"
+          style={`background-color: ${siteConfig.colors.primary}30`}
+        ></div>
+        <div class="flex justify-between">
+          {siteConfig.experience.map((exp, index) => (
+            <div class="relative flex flex-col items-center timeline-dot" style="flex: 1">
+              <div
+                class="w-6 h-6 rounded-full flex items-center justify-center z-10"
+                style={`background-color: ${siteConfig.colors.primaryDark}`}
+              >
+                <span class="text-white text-[10px] font-light">{index + 1}</span>
+              </div>
+              <div class="mt-4 text-center">
+                <p
+                  class="text-xs uppercase tracking-[0.15em]"
+                  style={`color: ${siteConfig.colors.primaryDark}`}
+                >
+                  {exp.dateRange.split(' - ')[0]}
+                </p>
+                <p
+                  class="text-[11px] mt-1"
+                  style={`color: ${siteConfig.colors.primary}80`}
+                >
+                  {exp.company.split('&')[0].trim()}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Experience Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {siteConfig.experience.map((exp, index) => (
+          <div
+            class={`reveal stagger-${index + 2} card-hover p-6`}
+            style={`background-color: white; border: 1px solid ${siteConfig.colors.primary}15`}
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3
+                  class="text-xl font-light"
+                  style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
+                >
+                  {exp.title}
+                </h3>
+                <p
+                  class="text-sm mt-1"
+                  style={`color: ${siteConfig.colors.primary}`}
+                >
+                  {exp.company}
+                </p>
+              </div>
+              <span
+                class="text-[10px] px-3 py-1 uppercase tracking-wider flex-shrink-0"
+                style={`color: ${siteConfig.colors.primary}; border: 1px solid ${siteConfig.colors.primary}20`}
+              >
+                {exp.dateRange}
+              </span>
+            </div>
+            <ul class="space-y-2">
+              {exp.bullets.slice(0, 4).map((bullet) => (
+                <li class="flex items-start text-sm text-gray-500">
+                  <span
+                    class="inline-block w-1 h-1 rounded-full mt-2 mr-3 flex-shrink-0"
+                    style={`background-color: ${siteConfig.colors.accent}`}
+                  />
+                  <span><Fragment set:html={bullet} /></span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
