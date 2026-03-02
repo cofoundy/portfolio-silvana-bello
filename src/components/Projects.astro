@@ -1,81 +1,112 @@
 ---
 import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+
+const projectImages = [
+  "/project-1.jpg",
+  "/project-2.jpg",
+  "/project-3.jpg",
+  "/project-4.jpg",
+];
 ---
 
 {hasProjects && (
   <section
     id="portfolio"
-    class="py-16 md:py-24"
-    style={`background-color: ${siteConfig.colors.surface}`}
+    class="py-20 md:py-32"
+    style={`background-color: ${siteConfig.colors.primaryDark}`}
   >
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <!-- Editorial header -->
-      <div class="text-center mb-16 reveal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Editorial header — light on dark -->
+      <div class="text-center mb-20 reveal">
         <p
-          class="text-xs font-medium uppercase tracking-[0.3em] mb-3"
-          style={`color: ${siteConfig.colors.primary}`}
+          class="text-[10px] font-medium uppercase tracking-[0.4em] mb-4"
+          style={`color: ${siteConfig.colors.primaryLight}60`}
         >
           Portfolio
         </p>
         <h2
-          class="text-4xl md:text-5xl font-light"
-          style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
+          class="text-5xl md:text-6xl lg:text-7xl font-light"
+          style={`color: ${siteConfig.colors.surfaceLight}; font-family: 'Cormorant', serif;`}
         >
           Mi Trabajo
         </h2>
         <div
-          class="w-12 h-px mx-auto mt-4"
+          class="w-16 h-px mx-auto mt-6"
           style={`background-color: ${siteConfig.colors.accent}`}
         ></div>
       </div>
 
-      <!-- 2-column gallery grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Masonry-style gallery grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {siteConfig.projects.map((project, index) => (
           <div
-            class={`reveal stagger-${index + 1} project-card card-hover p-8 group`}
-            style={`background-color: white; border: 1px solid ${siteConfig.colors.primary}15`}
+            class={`reveal stagger-${index + 1} group relative overflow-hidden cursor-pointer`}
+            style={index === 0 || index === 3 ? "aspect-ratio: 4/5" : "aspect-ratio: 16/10"}
           >
-            <!-- Project number — editorial detail -->
-            <span
-              class="text-xs uppercase tracking-[0.3em] mb-4 block"
-              style={`color: ${siteConfig.colors.primary}60`}
-            >
-              {String(index + 1).padStart(2, '0')}
-            </span>
+            <!-- Project Image -->
+            <img
+              src={projectImages[index] || projectImages[0]}
+              alt={project.name}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
 
-            <h3
-              class="text-2xl md:text-3xl font-light mb-3 transition-colors duration-300"
-              style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
-            >
-              {project.link ? (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="link-underline hover:opacity-70 transition-opacity"
-                >
-                  {project.name}
-                </a>
-              ) : (
-                project.name
-              )}
-            </h3>
+            <!-- Dark gradient overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500"
+            ></div>
 
-            <p class="text-sm text-gray-500 mb-6 leading-relaxed" style="font-family: 'Montserrat', sans-serif;">
-              <Fragment set:html={project.description} />
-            </p>
+            <!-- Content overlay -->
+            <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
+              <!-- Project number -->
+              <span
+                class="text-[10px] uppercase tracking-[0.4em] mb-3 block opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0"
+                style={`color: ${siteConfig.colors.accent}`}
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
 
-            <div class="flex flex-wrap gap-2">
-              {project.skills.map((skill) => (
-                <span
-                  class="text-xs px-3 py-1.5 font-light uppercase tracking-wider"
-                  style={`background-color: ${siteConfig.colors.surface}; color: ${siteConfig.colors.primary}; border: 1px solid ${siteConfig.colors.primary}20`}
-                >
-                  {skill}
-                </span>
-              ))}
+              <!-- Title — always visible -->
+              <h3
+                class="text-2xl md:text-3xl lg:text-4xl font-light mb-2 transition-transform duration-500 translate-y-2 group-hover:translate-y-0"
+                style={`color: white; font-family: 'Cormorant', serif;`}
+              >
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:opacity-80 transition-opacity"
+                  >
+                    {project.name}
+                    <svg class="w-4 h-4 inline-block ml-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </a>
+                ) : (
+                  project.name
+                )}
+              </h3>
+
+              <!-- Description — reveal on hover -->
+              <p
+                class="text-sm leading-relaxed mb-4 max-w-md opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 translate-y-4 group-hover:translate-y-0"
+                style="color: rgba(255,255,255,0.7); font-family: 'Montserrat', sans-serif;"
+              >
+                {project.description}
+              </p>
+
+              <!-- Tags — reveal on hover -->
+              <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0">
+                {project.skills.map((skill) => (
+                  <span
+                    class="text-[10px] px-3 py-1 uppercase tracking-wider"
+                    style={`color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2);`}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}

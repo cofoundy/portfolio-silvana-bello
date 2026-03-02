@@ -2,38 +2,38 @@
 import { siteConfig } from "../config";
 ---
 
-<!-- Thin separator -->
-<div class="w-full h-px" style={`background-color: ${siteConfig.colors.primary}15`}></div>
+<!-- Thin shimmer separator -->
+<div class="w-full h-px bar-shimmer"></div>
 
 <footer
-  class="py-16"
+  class="py-20"
   style={`background-color: ${siteConfig.colors.primaryDark}`}
 >
-  <div class="max-w-6xl mx-auto px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-      <!-- Brand — editorial -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+      <!-- Brand — large editorial name -->
       <div class="reveal-left">
         <h3
-          class="text-3xl font-light"
+          class="text-4xl md:text-5xl font-light"
           style={`color: ${siteConfig.colors.surfaceLight}; font-family: 'Cormorant', serif;`}
         >
           {siteConfig.name}
         </h3>
         <p
-          class="text-xs uppercase tracking-[0.2em] mt-2"
-          style={`color: ${siteConfig.colors.primary}80`}
+          class="text-[10px] uppercase tracking-[0.3em] mt-3"
+          style={`color: ${siteConfig.colors.primaryLight}40`}
         >
           Fotógrafa &middot; Directora Creativa
         </p>
       </div>
 
-      <!-- Social Links — minimal circles -->
+      <!-- Social Links — square minimal -->
       <div class="flex gap-4 reveal-right">
         {siteConfig.social?.email && (
           <a
             href={`mailto:${siteConfig.social.email}`}
-            class="icon-hover w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300"
-            style={`border-color: ${siteConfig.colors.primary}40; color: ${siteConfig.colors.surfaceLight}`}
+            class="icon-hover w-11 h-11 flex items-center justify-center border transition-all duration-300"
+            style={`border-color: ${siteConfig.colors.primaryLight}20; color: ${siteConfig.colors.surfaceLight}`}
             aria-label="Email"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,8 +46,8 @@ import { siteConfig } from "../config";
             href={siteConfig.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            class="icon-hover w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300"
-            style={`border-color: ${siteConfig.colors.primary}40; color: ${siteConfig.colors.surfaceLight}`}
+            class="icon-hover w-11 h-11 flex items-center justify-center border transition-all duration-300"
+            style={`border-color: ${siteConfig.colors.primaryLight}20; color: ${siteConfig.colors.surfaceLight}`}
             aria-label="LinkedIn"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -60,8 +60,8 @@ import { siteConfig } from "../config";
             href={siteConfig.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            class="icon-hover w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-300"
-            style={`border-color: ${siteConfig.colors.primary}40; color: ${siteConfig.colors.surfaceLight}`}
+            class="icon-hover w-11 h-11 flex items-center justify-center border transition-all duration-300"
+            style={`border-color: ${siteConfig.colors.primaryLight}20; color: ${siteConfig.colors.surfaceLight}`}
             aria-label="Instagram"
           >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -74,12 +74,12 @@ import { siteConfig } from "../config";
 
     <!-- Copyright -->
     <div
-      class="mt-10 pt-6 border-t text-center reveal"
-      style={`border-color: ${siteConfig.colors.primary}20`}
+      class="mt-14 pt-8 border-t text-center reveal"
+      style={`border-color: ${siteConfig.colors.primaryLight}10`}
     >
       <p
-        class="text-[10px] uppercase tracking-[0.2em]"
-        style={`color: ${siteConfig.colors.primary}50`}
+        class="text-[9px] uppercase tracking-[0.3em]"
+        style={`color: ${siteConfig.colors.primaryLight}30`}
       >
         &copy; {new Date().getFullYear()} {siteConfig.name}. Todos los derechos reservados.
       </p>

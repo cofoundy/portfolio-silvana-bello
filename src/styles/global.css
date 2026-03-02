@@ -261,6 +261,37 @@ h1, h2, h3, h4, h5, h6 {
    SMOOTH SCROLL + ACCESSIBILITY
    ═══════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════════════════
+   SCROLL INDICATOR
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(6px); opacity: 0.8; }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE GALLERY HOVER
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SELECTION STYLE
+   ═══════════════════════════════════════════════════════════ */
+
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
 html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {

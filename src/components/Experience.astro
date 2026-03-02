@@ -6,55 +6,55 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 {hasExperience && (
   <section
     id="experience"
-    class="py-16 md:py-24"
+    class="py-20 md:py-32"
     style={`background-color: ${siteConfig.colors.surfaceLight}`}
   >
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <!-- Header — editorial -->
-      <div class="mb-14 reveal-left">
+      <div class="mb-16 reveal-left">
         <p
-          class="text-xs font-medium uppercase tracking-[0.3em] mb-3"
+          class="text-[10px] font-medium uppercase tracking-[0.4em] mb-3"
           style={`color: ${siteConfig.colors.primary}`}
         >
           Experiencia
         </p>
         <h2
-          class="text-4xl md:text-5xl font-light"
+          class="text-4xl md:text-5xl lg:text-6xl font-light"
           style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
         >
           Trayectoria
         </h2>
         <div
-          class="w-12 h-px mt-4"
+          class="w-12 h-px mt-6"
           style={`background-color: ${siteConfig.colors.accent}`}
         ></div>
       </div>
 
       <!-- Horizontal Timeline (Desktop only) -->
-      <div class="hidden md:block relative mb-10 reveal stagger-1">
+      <div class="hidden md:block relative mb-14 reveal stagger-1">
         <div
           class="absolute top-3 left-0 right-0 h-px timeline-line"
-          style={`background-color: ${siteConfig.colors.primary}30`}
+          style={`background-color: ${siteConfig.colors.primary}20`}
         ></div>
         <div class="flex justify-between">
           {siteConfig.experience.map((exp, index) => (
             <div class="relative flex flex-col items-center timeline-dot" style="flex: 1">
               <div
-                class="w-6 h-6 rounded-full flex items-center justify-center z-10"
+                class="w-7 h-7 rounded-full flex items-center justify-center z-10"
                 style={`background-color: ${siteConfig.colors.primaryDark}`}
               >
-                <span class="text-white text-[10px] font-light">{index + 1}</span>
+                <span class="text-white text-[10px] font-light" style="font-family: 'Cormorant', serif;">{index + 1}</span>
               </div>
               <div class="mt-4 text-center">
                 <p
-                  class="text-xs uppercase tracking-[0.15em]"
+                  class="text-[10px] uppercase tracking-[0.2em]"
                   style={`color: ${siteConfig.colors.primaryDark}`}
                 >
                   {exp.dateRange.split(' - ')[0]}
                 </p>
                 <p
-                  class="text-[11px] mt-1"
-                  style={`color: ${siteConfig.colors.primary}80`}
+                  class="text-[10px] mt-1"
+                  style={`color: ${siteConfig.colors.primary}60`}
                 >
                   {exp.company.split('&')[0].trim()}
                 </p>
@@ -65,39 +65,37 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
       </div>
 
       <!-- Experience Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {siteConfig.experience.map((exp, index) => (
           <div
-            class={`reveal stagger-${index + 2} card-hover p-6`}
-            style={`background-color: white; border: 1px solid ${siteConfig.colors.primary}15`}
+            class={`reveal stagger-${index + 2} card-hover p-8`}
+            style={`background-color: white; border: 1px solid ${siteConfig.colors.primary}10`}
           >
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <h3
-                  class="text-xl font-light"
-                  style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
-                >
-                  {exp.title}
-                </h3>
-                <p
-                  class="text-sm mt-1"
-                  style={`color: ${siteConfig.colors.primary}`}
-                >
-                  {exp.company}
-                </p>
-              </div>
+            <div class="mb-5">
               <span
-                class="text-[10px] px-3 py-1 uppercase tracking-wider flex-shrink-0"
-                style={`color: ${siteConfig.colors.primary}; border: 1px solid ${siteConfig.colors.primary}20`}
+                class="text-[10px] px-3 py-1 uppercase tracking-wider inline-block mb-4"
+                style={`color: ${siteConfig.colors.primary}80; border: 1px solid ${siteConfig.colors.primary}15`}
               >
                 {exp.dateRange}
               </span>
+              <h3
+                class="text-xl md:text-2xl font-light"
+                style={`color: ${siteConfig.colors.primaryDark}; font-family: 'Cormorant', serif;`}
+              >
+                {exp.title}
+              </h3>
+              <p
+                class="text-sm mt-1"
+                style={`color: ${siteConfig.colors.primary}90`}
+              >
+                {exp.company}
+              </p>
             </div>
-            <ul class="space-y-2">
+            <ul class="space-y-2.5">
               {exp.bullets.slice(0, 4).map((bullet) => (
                 <li class="flex items-start text-sm text-gray-500">
                   <span
-                    class="inline-block w-1 h-1 rounded-full mt-2 mr-3 flex-shrink-0"
+                    class="inline-block w-1.5 h-px mt-2.5 mr-3 flex-shrink-0"
                     style={`background-color: ${siteConfig.colors.accent}`}
                   />
                   <span><Fragment set:html={bullet} /></span>
